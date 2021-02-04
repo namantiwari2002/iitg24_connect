@@ -13,7 +13,7 @@ const User = require('./models/users' , {
 
 });
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.rcfse.mongodb.net/iitg_24?retryWrites=true&w=majority');
+mongoose.connect('<mongo_connection_link>');
 
 app.set('view engine' , 'ejs');
 
