@@ -1,0 +1,15 @@
+<head>
+    <title>Search Result</title>
+</head>
+
+<body>
+<h3>All People</h3><br><br>
+<br>
+    <% result.forEach(function(r) { %>
+        <br><img src=<%= r.img_link%> width="50" height="50">
+            <%= r.fname%> <%= r.lname%><br>
+            <a href = "/profile/<%= r.profile_id%>" >View Profile</a>
+            <hr>
+        <%})%>
+
+</body>
