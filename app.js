@@ -8,12 +8,19 @@ const { render } = require('ejs');
 
 const User = require('./models/users')
 
+<<<<<<< HEAD
     mongoose.createConnection('mongodb+srv://admin:admin@cluster0.rcfse.mongodb.net/iitg_24?retryWrites=true&w=majority&ssl=true', {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }, () =>
       console.log("connected"));
   
+=======
+
+});
+
+mongoose.connect('<mongo_connection_link>');
+>>>>>>> 7e13a7f8623a42cc921854fe2379020adb4ea57c
 
 app.set('view engine' , 'ejs');
 
@@ -141,8 +148,12 @@ app.post("/search" ,encoder , function(req , res){
 
 });
 
+<<<<<<< HEAD
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
 app.listen(1000);
+=======
+app.listen(1000);
+>>>>>>> 7e13a7f8623a42cc921854fe2379020adb4ea57c
