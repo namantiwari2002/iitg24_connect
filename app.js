@@ -5,23 +5,23 @@ var encoder = body.urlencoded();
 const mongoose = require('mongoose');
 const { render } = require('ejs');
 
-const User = require('./models/users' , {
 
-    userNewUrlParser : true,
-    useUnifiedTopology: true
+const User = require('./models/users')
 
-
-});
-
-mongoose.connect('mongodb+srv://admin:admin@cluster0.rcfse.mongodb.net/iitg_24?retryWrites=true&w=majority');
+    mongoose.createConnection('mongodb+srv://admin:admin@cluster0.rcfse.mongodb.net/iitg_24?retryWrites=true&w=majority&ssl=true', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      }, () =>
+      console.log("connected"));
+  
 
 app.set('view engine' , 'ejs');
 
-app.get("" , function(req , res){
+    app.get("" , function(req , res){
 
-    res.render('home')
+     res.render('home')
 
-});
+    });
 
 app.post("/create" , encoder , function(req , res){
 
@@ -132,12 +132,17 @@ app.get("/edit_done" , function(req , res){
 
 app.post("/search" ,encoder , function(req , res){
 
-    var regex = new RegExp(req.body.search , 'i');
+    const regex = new RegExp(escapeRegex(req.body.search), 'gi');
+    
     User.find({interests:regex}).then((result)=>{
         console.log(result);
         res.render('search' , {result:result})
     })
 
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 app.listen(1000);
